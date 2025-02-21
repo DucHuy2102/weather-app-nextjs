@@ -1,12 +1,9 @@
-import { Button } from '@/components/ui/button';
+import { NavBar } from '@/components';
 
 export default function page() {
     return (
-        <div className='p-20'>
-            <h1 className='italic font-serif text-2xl'>Hello Duc Huy</h1>
-            <Button size={'lg'} variant={'default'}>
-                Click me
-            </Button>
-        </div>
+        <main className='mx-4 lg:mx-8 xl:mx-24 2xl:mx-64 m-auto'>
+            <NavBar />
+        </main>
     );
 }
