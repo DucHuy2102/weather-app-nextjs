@@ -55,7 +55,7 @@ export default function SearchBar() {
                                 <Smile />
                                 <span>Search Emoji</span>
                             </CommandItem>
-                            <CommandItem disabled>
+                            <CommandItem>
                                 <Calculator />
                                 <span>Calculator</span>
                             </CommandItem>
