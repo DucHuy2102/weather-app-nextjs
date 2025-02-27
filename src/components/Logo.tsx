@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { getWeather, IWeather } from '@/lib/features/weather/weatherSlice';
+import { getWeather, IWeather } from '@/lib/slices/weatherSlice';
 
 export default function Logo() {
     const router = useRouter();
