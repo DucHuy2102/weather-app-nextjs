@@ -1,6 +1,6 @@
 import { Github } from 'lucide-react';
-import { Button } from './ui/button';
 import { LogoWeb, SearchBar, ToggleTheme } from '.';
+import { Button } from '../ui/button';
 
 export default function NavBar() {
     return (

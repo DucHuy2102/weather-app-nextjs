@@ -1,4 +1,4 @@
-import { Footer, NavBar, Temperature, FiveDayForecast } from '@/components';
+import { Footer, NavBar, Temperature, FiveDayForecast, AirPollution } from '@/components/layout';
 
 export default function page() {
     return (
@@ -14,7 +14,11 @@ export default function page() {
                 </div>
 
                 {/* right */}
-                <div className='flex flex-col w-full'>left right</div>
+                <div className='flex flex-col w-full'>
+                    <div className='instruments grid h-full gap-4 col-span-full sm-2:col-span-2 lg:grid-cols-3 xl:grid-cols-4'>
+                        <AirPollution />
+                    </div>
+                </div>
             </div>
 
             <Footer />

@@ -3,16 +3,15 @@
 import { RootState } from '@/lib/store';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Skeleton } from './ui/skeleton';
+import { Skeleton } from '../ui/skeleton';
 import moment from 'moment';
-import { Label } from './ui/label';
-import { Switch } from './ui/switch';
+import { Label } from '../ui/label';
+import { Switch } from '../ui/switch';
 import { get_Icon_Weather, kelvin_To_Celsius, kelvin_To_Fahrenheit } from '@/utils/misc';
 
 export default function Temperature() {
-    const weather_Data_Redux = useSelector((state: RootState) => state.weather);
+    const { weather: weather_Data_Redux } = useSelector((state: RootState) => state.weather);
     const [isCelsius, setIsCelsius] = useState<boolean>(true);
-    console.log(weather_Data_Redux);
 
     const today = moment().format('dddd');
     const currentDate = moment().format('Do, YYYY');
@@ -32,11 +31,11 @@ export default function Temperature() {
             justify-between dark:bg-dark-grey shadow-sm dark:shadow-none'
         >
             <div className='flex justify-between items-center'>
-                <div className='flex flex-col'>
-                    <span>City: {weather_Data_Redux.name}</span>
-                    <span>Weather: {weather_Data_Redux.weather[0]?.main}</span>
+                <div className='flex flex-col font-bold'>
+                    <span>{weather_Data_Redux.name}</span>
+                    <span>{weather_Data_Redux.weather[0]?.main}</span>
                 </div>
-                <div className='flex flex-col items-center'>
+                <div className='flex flex-col items-center italic'>
                     <span className='font-medium'>{today}</span>
                     <span className='font-medium'>{currentDate}</span>
                 </div>
@@ -75,27 +74,26 @@ export default function Temperature() {
                     : `${kelvin_To_Fahrenheit(weather_Data_Redux.main?.temp)}°F`}
             </p>
 
-            <div className='flex flex-col items-center gap-2'>
-                <div className='flex items-center gap-2'>
-                    <span>{get_Icon_Weather(weather_Data_Redux.weather[0]?.icon)}</span>
-                    <p className='capitalize text-xl font-medium'>
-                        {weather_Data_Redux.weather[0]?.description}
-                    </p>
-                </div>
-                <p className='flex items-center gap-2'>
-                    <span>
-                        High:{' '}
-                        {isCelsius
-                            ? `${kelvin_To_Celsius(weather_Data_Redux.main?.temp_max)}°C`
-                            : `${kelvin_To_Fahrenheit(weather_Data_Redux.main?.temp_max)}°F`}
-                    </span>
-                    <span>
-                        Low:{' '}
-                        {isCelsius
-                            ? `${kelvin_To_Celsius(weather_Data_Redux.main?.temp_min)}°C`
-                            : `${kelvin_To_Fahrenheit(weather_Data_Redux.main?.temp_min)}°F`}
-                    </span>
+            <div className='flex items-center justify-center gap-1'>
+                <span>{get_Icon_Weather(weather_Data_Redux.weather[0]?.icon)}</span>
+                <p className='capitalize text-xl font-medium'>
+                    {weather_Data_Redux.weather[0]?.description}
                 </p>
+            </div>
+
+            <div className='flex items-center justify-between px-5'>
+                <span>
+                    High:{' '}
+                    {isCelsius
+                        ? `${kelvin_To_Celsius(weather_Data_Redux.main?.temp_max)}°C`
+                        : `${kelvin_To_Fahrenheit(weather_Data_Redux.main?.temp_max)}°F`}
+                </span>
+                <span>
+                    Low:{' '}
+                    {isCelsius
+                        ? `${kelvin_To_Celsius(weather_Data_Redux.main?.temp_min)}°C`
+                        : `${kelvin_To_Fahrenheit(weather_Data_Redux.main?.temp_min)}°F`}
+                </span>
             </div>
         </div>
     );

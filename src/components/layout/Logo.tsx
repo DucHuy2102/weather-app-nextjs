@@ -4,7 +4,9 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { getWeather, IWeather } from '@/lib/slices/weatherSlice';
+import { setAirPollution, setWeather } from '@/lib/slices/weatherSlice';
+import { IWeatherData } from '@/lib/interfaces/weather.interface';
+import { IAirPollutionData } from '@/lib/interfaces/air-pollution.interface';
 
 export default function Logo() {
     const router = useRouter();
@@ -13,16 +15,26 @@ export default function Logo() {
     const getWeatherData = async () => {
         try {
             const res = await axios.get('/api/weather');
-            console.log(res.data);
-            const weatherData: IWeather = res.data;
-            dispatch(getWeather(weatherData));
+            const weatherData: IWeatherData = res.data;
+            dispatch(setWeather(weatherData));
         } catch (error) {
             console.log('Error when fetching weather data -->', error);
         }
     };
 
+    const getAirPollutionData = async () => {
+        try {
+            const res = await axios.get('/api/pollution');
+            const airPollutionData: IAirPollutionData = res.data;
+            dispatch(setAirPollution(airPollutionData));
+        } catch (error) {
+            console.log('Error when fetching air pollution data -->', error);
+        }
+    };
+
     useEffect(() => {
         getWeatherData();
+        getAirPollutionData();
     }, []);
 
     return (
