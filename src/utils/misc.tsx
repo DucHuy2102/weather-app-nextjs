@@ -1,3 +1,4 @@
+import { CloudDrizzle, CloudRain, CloudSun, Cloudy, Snowflake } from 'lucide-react';
 import moment from 'moment';
 import Image from 'next/image';
 
@@ -25,4 +26,21 @@ export const unix_To_Time = (unix: number, timezone: number) => {
         .unix(unix)
         .utcOffset(timezone / 60)
         .format('HH:mm');
+};
+
+export const getIcon = (weather: string) => {
+    switch (weather) {
+        case 'Drizzle':
+            return <CloudDrizzle size={25} />;
+        case 'Rain':
+            return <CloudRain size={30} />;
+        case 'Snow':
+            return <Snowflake size={30} />;
+        case 'Clear':
+            return <CloudSun size={30} />;
+        case 'Clouds':
+            return <Cloudy size={30} />;
+        default:
+            return <CloudSun size={30} />;
+    }
 };

@@ -27,7 +27,7 @@ export default function Sunset() {
             <div className='top'>
                 <h2 className='flex items-center gap-2 font-medium'>
                     <SunsetIcon size={15} className='text-yellow-500 animate-pulse' />
-                    Sunset at
+                    Sunset
                 </h2>
                 <p className='pt-4 text-2xl'>{sunsetTime}</p>
             </div>

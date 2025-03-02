@@ -5,6 +5,8 @@ import {
     FiveDayForecast,
     AirPollution,
     Sunset,
+    Wind,
+    DailyForecast,
 } from '@/components/layout';
 
 export default function page() {
@@ -25,6 +27,8 @@ export default function page() {
                     <div className='instruments grid h-full gap-4 col-span-full sm-2:col-span-2 lg:grid-cols-3 xl:grid-cols-4'>
                         <AirPollution />
                         <Sunset />
+                        <Wind />
+                        <DailyForecast />
                     </div>
                 </div>
             </div>

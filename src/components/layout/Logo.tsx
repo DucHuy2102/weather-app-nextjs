@@ -4,9 +4,10 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setAirPollution, setWeather } from '@/lib/slices/weatherSlice';
+import { setAirPollution, setFiveDayForecast, setWeather } from '@/lib/slices/weatherSlice';
 import { IWeatherData } from '@/lib/interfaces/weather.interface';
 import { IAirPollutionData } from '@/lib/interfaces/air-pollution.interface';
+import { IFiveDayForecast } from '@/lib/interfaces/five-day-forecast.interface';
 
 export default function Logo() {
     const router = useRouter();
@@ -32,9 +33,20 @@ export default function Logo() {
         }
     };
 
+    const getFiveDayForecast = async () => {
+        try {
+            const res = await axios.get('/api/fiveday');
+            const fiveDayForecast: IFiveDayForecast = res.data;
+            dispatch(setFiveDayForecast(fiveDayForecast));
+        } catch (error) {
+            console.log('Error when fetching five day forecast data -->', error);
+        }
+    };
+
     useEffect(() => {
         getWeatherData();
         getAirPollutionData();
+        getFiveDayForecast();
     }, []);
 
     return (
