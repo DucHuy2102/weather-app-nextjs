@@ -1,3 +1,4 @@
+import moment from 'moment';
 import Image from 'next/image';
 
 export const kelvin_To_Celsius = (kelvinDegree: number) => {
@@ -17,4 +18,11 @@ export const get_Icon_Weather = (icon: string) => {
             height={80}
         />
     );
+};
+
+export const unix_To_Time = (unix: number, timezone: number) => {
+    return moment
+        .unix(unix)
+        .utcOffset(timezone / 60)
+        .format('HH:mm');
 };

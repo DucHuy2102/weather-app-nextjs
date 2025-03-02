@@ -38,4 +38,5 @@ export interface IWeatherData {
     sys: Sys;
     name: string;
     visibility: number;
+    timezone: number;
 }
